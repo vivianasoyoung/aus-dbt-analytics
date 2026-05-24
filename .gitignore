@@ -1,21 +1,8 @@
-# Generated files
-data/raw/
-dbt/target/
-dbt/logs/
-dbt/dbt_packages/
-
-# Python
-__pycache__/
+target/
+dbt_packages/
+logs/
+.user.yml
 *.pyc
-*.pyo
-
-# Mac
+__pycache__/
 .DS_Store
-airflow/**/.DS_Store
-
-# Airflow
-airflow/logs/
-airflow/dags/__pycache__/
-
-# Environment
 .env
