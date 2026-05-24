@@ -1,26 +1,19 @@
-with transactions as (
-    select * from {{ ref('stg_transactions') }}
-    where transaction_type = 'DEBIT'
+-- New: categories rolled up. Grain = (account_id, transaction_month).
+with category_spend as (
+    select * from {{ ref('int_customer_monthly_category_spend') }}
 ),
 
-accounts as (
-    select * from {{ ref('stg_accounts') }}
-),
-
-monthly_spend as (
+rolled_up as (
     select
-        t.account_id,
-        a.customer_id,
-        a.account_type,
-        t.transaction_month,
-        t.merchant_category,
-        count(*)                as transaction_count,
-        sum(t.amount)           as total_spend,
-        avg(t.amount)           as avg_spend,
-        max(t.amount)           as max_spend
-    from transactions t
-    left join accounts a using (account_id)
-    group by 1, 2, 3, 4, 5
+        account_id,
+        customer_id,
+        account_type,
+        transaction_month,
+        sum(transaction_count)             as transaction_count,
+        sum(total_spend)::numeric(18, 2)   as total_spend,
+        count(distinct merchant_category)  as categories_used
+    from category_spend
+    group by 1, 2, 3, 4
 )
 
-select * from monthly_spend
+select * from rolled_up
