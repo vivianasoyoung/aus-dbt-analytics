@@ -45,3 +45,19 @@ models:
         tests: [not_null]
       - name: total_spend
         tests: [not_null]
+  
+  - name: mart_daily_category_spend
+    description: |
+      DEBIT spend aggregated by (date × merchant_category × channel × state).
+      Includes spend ranking within each day and cumulative monthly spend.
+    columns:
+      - name: transaction_date
+        tests: [not_null]
+      - name: merchant_category
+        tests: [not_null]
+      - name: total_spend
+        tests: [not_null]
+      - name: spend_rank_for_day
+        tests: [not_null]
+      - name: cumulative_monthly_spend
+        tests: [not_null]
