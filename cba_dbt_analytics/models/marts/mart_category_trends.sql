@@ -9,7 +9,7 @@ trends as (
         transaction_month,
         merchant_category,
         sum(transaction_count)                                              as total_transactions,
-       a sum(total_spend)::numeric(18, 2)                                    as total_spend,
+        sum(total_spend)::numeric(18, 2)                                    as total_spend,
         -- Weighted average transaction value (NOT avg of averages).
         (sum(total_spend) / nullif(sum(transaction_count), 0))::numeric(18, 2)
                                                                             as avg_transaction_value,
