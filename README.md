@@ -72,6 +72,16 @@ dbt docs generate && dbt docs serve --port 8081
 
 Every model has column-level tests in `_*_models.yml`: `unique`, `not_null`, `accepted_values`, `relationships`, plus `dbt_utils` expression and combination tests. Run with `dbt test` (also runs as part of `dbt build` in CI).
 
-## Cloud (BigQuery)
+## Cloud (AWS)
 
-The same models run on BigQuery via a second dbt target — demonstrating warehouse portability. See the BigQuery setup notes for configuration.
+This dbt project runs against **two warehouses with no model changes** — only a
+profile swap. Local development uses Postgres in Docker; the cloud demo runs
+the identical project against **AWS RDS PostgreSQL** with raw data staged in
+**S3**.
+
+**Pipeline**: CSV → S3 (raw landing zone) → RDS PostgreSQL (`raw` schema) →
+dbt staging → dbt marts.
+
+**Run it locally:**
+```bash
+dbt build --target dev      # against local Postgres
