@@ -90,3 +90,19 @@ dbt build --target dev      # against local Postgres
 ```bash
 export RDS_PASSWORD='...'
 dbt build --target aws      # against AWS RDS
+
+
+### Screenshots
+
+![S3 bucket with raw CSVs](docs/aws-s3-bucket.png)
+![dbt build success against AWS RDS](docs/aws-dbt-build.png)
+![RDS instance running in Sydney](docs/aws-rds-available.png)
+![psql connected to RDS over TLS 1.3](docs/aws-psql-ssl.png)
+
+### What this demonstrates
+
+- **Warehouse portability** — clean separation between SQL logic and infrastructure
+- **Cloud data architecture** — S3 (data lake) + RDS (warehouse) pattern
+- **dbt target/profile management** — env-var-based secrets, no credentials in repo
+
+> AWS resources were torn down after the demo to avoid charges. Fully reproducible from the steps above.
