@@ -85,13 +85,13 @@ dbt staging → dbt marts.
 **Run it locally:**
 ```bash
 dbt build --target dev      # against local Postgres
-'''
+```
 
 **Run it on AWS:**
 ```bash
 export RDS_PASSWORD='...'
 dbt build --target aws      # against AWS RDS
-'''
+```
 
 
 ### Screenshots
