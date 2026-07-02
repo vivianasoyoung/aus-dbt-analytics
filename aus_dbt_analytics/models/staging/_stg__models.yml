@@ -5,7 +5,7 @@ models:
     description: |
       Cleaned, typed transaction records. One row per non-declined,
       positive-amount transaction. Source: raw.transactions (loaded by
-      cba-banking-pipeline's Airflow DAG).
+      aus-banking-pipeline's Airflow DAG).
     columns:
       - name: transaction_id
         description: Surrogate primary key from the source system.

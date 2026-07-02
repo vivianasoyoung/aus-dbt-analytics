@@ -15,7 +15,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: cba_pipeline
+          POSTGRES_DB: aus_pipeline
         ports: ['5432:5432']
         options: >-
           --health-cmd "pg_isready -U postgres"
@@ -28,8 +28,8 @@ jobs:
       POSTGRES_PORT: '5432'
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: cba_pipeline
-      DBT_PROFILES_DIR: ${{ github.workspace }}/cba_dbt_analytics
+      POSTGRES_DB: aus_pipeline
+      DBT_PROFILES_DIR: ${{ github.workspace }}/aus_dbt_analytics
 
     steps:
       - uses: actions/checkout@v4
@@ -42,15 +42,15 @@ jobs:
         run: pip install "dbt-postgres>=1.8,<1.10"
 
       - name: Seed raw schema + fixture data
-        run: psql "postgresql://postgres:postgres@localhost:5432/cba_pipeline" -f .github/fixtures/seed_raw.sql
+        run: psql "postgresql://postgres:postgres@localhost:5432/aus_pipeline" -f .github/fixtures/seed_raw.sql
 
       - name: Render profiles.yml
-        run: cp profiles.example.yml cba_dbt_analytics/profiles.yml
+        run: cp profiles.example.yml aus_dbt_analytics/profiles.yml
 
       - name: dbt deps
-        working-directory: cba_dbt_analytics
+        working-directory: aus_dbt_analytics
         run: dbt deps
 
       - name: dbt build
-        working-directory: cba_dbt_analytics
+        working-directory: aus_dbt_analytics
         run: dbt build
