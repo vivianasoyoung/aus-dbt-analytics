@@ -9,7 +9,7 @@ INSERT INTO raw.accounts
 SELECT
     'ACC'||lpad(g::text,7,'0'),
     'CUS'||lpad(g::text,8,'0'),
-    '062-000', lpad(g::text,10,'0'),
+    (array['999-001','999-002','999-003','999-004'])[1 + (g % 4)], lpad(g::text,10,'0'),
     (array['SAVINGS','TRANSACTION','OFFSET'])[1 + (g % 3)],
     date '2020-01-01' + (g*7),
     round((random()*50000)::numeric,2),
@@ -27,7 +27,7 @@ INSERT INTO raw.transactions
 SELECT
     gen_random_uuid()::text,
     'ACC'||lpad((1 + (s % 20))::text,7,'0'),
-    '062-000', lpad((1 + (s % 20))::text,10,'0'),
+    (array['999-001','999-002','999-003','999-004'])[1 + (s % 4)], lpad((1 + (s % 20))::text,10,'0'),
     timestamp '2024-01-01' + (s % 360) * interval '1 day' + (s % 24) * interval '1 hour',
     round((10 + random()*900)::numeric,2),
     case when s % 20 = 0 then 'CREDIT' else 'DEBIT' end,
