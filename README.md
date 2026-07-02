@@ -2,6 +2,8 @@
 
 Analytics engineering project on synthetic Australian banking transaction data. Implements a three-layer dbt architecture — staging, intermediate, marts — with column-level documentation, tests, and snapshots. Runs on PostgreSQL (local) and BigQuery (cloud).
 
+**[Live dbt docs](https://vivianasoyoung.github.io/aus-dbt-analytics/)** — browse the full model lineage graph, column-level docs, and tests without cloning anything. Auto-deployed on every push to `main`.
+
 > **Disclaimer:** Personal learning project built with entirely synthetic, programmatically generated data. Not affiliated with, endorsed by, or using systems, schemas, or data from any financial institution.
 
 ## How this fits with the rest of the project
