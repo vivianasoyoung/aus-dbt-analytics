@@ -1,4 +1,4 @@
-cba_dbt_analytics:
+aus_dbt_analytics:
   target: dev
   outputs:
     dev:
@@ -7,7 +7,7 @@ cba_dbt_analytics:
       port: "{{ env_var('POSTGRES_PORT', '5432') | int }}"
       user: "{{ env_var('POSTGRES_USER', 'airflow') }}"
       password: "{{ env_var('POSTGRES_PASSWORD') }}"
-      dbname: "{{ env_var('POSTGRES_DB', 'cba_pipeline') }}"
+      dbname: "{{ env_var('POSTGRES_DB', 'aus_pipeline') }}"
       schema: analytics_dev
       threads: 4
 
