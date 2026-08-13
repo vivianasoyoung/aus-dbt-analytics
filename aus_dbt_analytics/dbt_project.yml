@@ -7,6 +7,7 @@ profile: 'aus_dbt_analytics'
 model-paths: ["models"]
 test-paths: ["tests"]
 docs-paths: ["docs"]
+snapshot-paths: ["snapshots"]
 
 target-path: "target"
 clean-targets: ["target", "dbt_packages"]
