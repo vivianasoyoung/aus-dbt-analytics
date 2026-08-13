@@ -42,7 +42,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dbt
-        run: pip install "dbt-postgres==1.9.4"
+        run: pip install "dbt-postgres==1.9.1"
 
       - name: Seed raw schema + fixture data
         run: psql "postgresql://postgres:postgres@localhost:5432/aus_pipeline" -f .github/fixtures/seed_raw.sql
