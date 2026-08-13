@@ -1,6 +1,6 @@
 # Australian Banking dbt Analytics Layer
 
-Analytics engineering project on synthetic Australian banking transaction data. Implements a three-layer dbt architecture — staging, intermediate, marts — with column-level documentation, tests, and snapshots. Runs on PostgreSQL (local) and BigQuery (cloud).
+Analytics engineering project on synthetic Australian banking transaction data. Implements a three-layer dbt architecture — staging, intermediate, marts — with column-level documentation, 51 data tests, and a Type 2 snapshot. Runs on PostgreSQL (local) and BigQuery (cloud).
 
 **[Live dbt docs](https://vivianasoyoung.github.io/aus-dbt-analytics/)** — browse the full model lineage graph, column-level docs, and tests without cloning anything. Auto-deployed on every push to `main`.
 
@@ -54,7 +54,8 @@ pip install dbt-postgres
 cd <project dir>
 dbt deps
 cp profiles.example.yml ~/.dbt/profiles.yml   # set credentials via env vars
-dbt build          # runs models + 40+ data tests
+dbt build          # runs models + 51 data tests
+dbt snapshot       # captures account attribute changes over time
 dbt docs generate && dbt docs serve --port 8081
 ```
 
